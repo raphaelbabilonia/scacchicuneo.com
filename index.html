@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scacchi Cuneo - Ponte per HOC Academy</title>
+    <style>
+        :root {
+            --purple-dark: #3C096C;
+            --purple-medium: #7025BE;
+            --purple-light: #B683EC;
+            --yellow: #FFB600;
+            --gray-dark: #343434;
+            --gray-medium: #666666;
+            --gray-light: #DCDCDF;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--gray-light);
+            color: var(--gray-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--purple-dark);
+            color: var(--white);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(60, 9, 108, 0.9);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 100px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 10px
+        }
+
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--yellow);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--purple-dark), var(--purple-medium));
+            color: var(--white);
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--yellow);
+            color: var(--purple-dark);
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.6s forwards;
+        }
+
+        .btn:hover {
+            background-color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 80px 0;
+        }
+
+        .feature {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .feature.animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--purple-medium);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        .contact {
+            background-color: var(--purple-light);
+            padding: 80px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-item {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background-color: var(--purple-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container header-content">
+            <img src="assets/logo.png" alt="Scacchi Cuneo Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="https://docs.hoc.academy/">Chi Siamo</a></li>
+                    <li><a href="https://hoc.academy/">HOC Academy</a></li>
+                    <li><a href="#contact">Contatti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Benvenuti a Scacchi Cuneo</h1>
+            <p>La tua porta d'accesso al mondo degli scacchi e all'innovativa HOC Academy. Unisciti a noi per un viaggio
+                di apprendimento, strategia e divertimento!</p>
+        </div>
+        <a href="https://hoc.academy/" class="btn">Scopri HOC Academy</a>
+    </section>
+
+    <section id="hoc-academy" class="features container">
+        <div class="feature">
+            <div class="feature-icon">♔</div>
+            <h3>Approccio Innovativo</h3>
+            <p>HOC Academy rivoluziona l'apprendimento degli scacchi combinando gamification, intelligenza artificiale e
+                giochi di logica.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">♕</div>
+            <h3>Sviluppo Cognitivo</h3>
+            <p>Il nostro metodo unico potenzia il pensiero critico, la risoluzione dei problemi e le abilità
+                decisionali.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">♖</div>
+            <h3>Tecnologia All'avanguardia</h3>
+            <p>Utilizziamo strumenti digitali avanzati e IA per offrire un'esperienza di apprendimento personalizzata e
+                coinvolgente.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contattaci</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>Responsabile</h3>
+                    <p>Raphael Babilonia</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Telefono</h3>
+                    <p><a href="tel:+393515810091">351 581 0091</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p><a href="mailto:scacchicuneo@gmail.com">scacchicuneo@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Scacchi Cuneo. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animate features on scroll
+        const features = document.querySelectorAll('.feature');
+        const animateFeatures = () => {
+            features.forEach(feature => {
+                const featureTop = feature.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (featureTop < windowHeight * 0.75) {
+                    feature.classList.add('animate');
+                }
+            });
+        };
+
+        // Change header background on scroll
+        const header = document.querySelector('header');
+        const changeHeaderBackground = () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        };
+
+        window.addEventListener('scroll', () => {
+            animateFeatures();
+            changeHeaderBackground();
+        });
+
+        // Initial check for features in view
+        animateFeatures();
+    </script>
+</body>
+
+</html>
